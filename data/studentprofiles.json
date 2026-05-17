@@ -22,7 +22,7 @@
         "Course": "BSIT - Bachelor of Science in Information Technology",
         "Year_level": "2nd Year",
         "Records": "clean",
-        "image": "data/profiles/photos/Escara.jpg"
+        "image": "data/Escara.jpg"
     },
 
     {
@@ -31,6 +31,6 @@
         "Course": "BSIT - Bachelor of Science in Information Technology",
         "Year_level": "2nd Year",
         "Records": "clean",
-        "image": "data/profiles/photos/Aldaya.jpeg"
+        "image": "data/Aldaya.jpeg"
     }
 ]

@@ -5,7 +5,7 @@ import json
 import streamlit as st
 
 # Load student profiles JSON
-with open("studentprofiles.json") as f:
+with open("data/studentprofiles.json") as f:
     profiles = json.load(f)
 
 # Precompute encodings
