@@ -32,5 +32,15 @@
         "Year_level": "2nd Year",
         "Records": "clean",
         "image": "data/Aldaya.jpeg"
+    },
+    {
+        "Student_Name": "Licudine, John Lawrence B.",
+        "Student_Id": "2024-200090",
+        "Course": "BSIT - Bachelor of Science in Information Technology",
+        "Year_level": "2nd Year",
+        "Records": "clean",
+        "image": "data/Licudine.jpg"
     }
+
+
 ]

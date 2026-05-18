@@ -19,30 +19,27 @@ for profile in profiles:
 
 st.title("📸 Student Face Recognition")
 
-# Camera input widget
 camera_input = st.camera_input("Take a picture")
 
 if camera_input:
-    # Convert uploaded image to numpy array
     file_bytes = np.asarray(bytearray(camera_input.getvalue()), dtype=np.uint8)
     frame = cv2.imdecode(file_bytes, cv2.IMREAD_COLOR)
     rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
-    # Show captured image
     st.image(rgb_frame, channels="RGB", caption="Captured Image")
 
-    # Detect faces
     face_locations = face_recognition.face_locations(rgb_frame)
     face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
 
-    # Compare with known encodings
     for encoding in face_encodings:
-        results = face_recognition.compare_faces(known_encodings, encoding)
-        if True in results:
-            idx = results.index(True)
-            profile = known_profiles[idx]
+        # Compute distances
+        distances = face_recognition.face_distance(known_encodings, encoding)
+        best_match_index = np.argmin(distances)
 
-            # Show student photo + metadata
+        # Set stricter threshold (default is 0.6, lower = stricter)
+        if distances[best_match_index] < 0.50:
+            profile = known_profiles[best_match_index]
+
             st.image(profile["image"], caption=profile.get("Student_Name", "Unknown"))
             st.write(f"**ID:** {profile.get('Student_Id', 'N/A')}")
             st.write(f"**Course:** {profile.get('Course', 'N/A')}")
