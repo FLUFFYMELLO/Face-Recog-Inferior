@@ -1,12 +1,14 @@
 import cv2
 import face_recognition
 import numpy as np
-import json
+import requests
 import streamlit as st
 
 # Load student profiles JSON
-with open("data/studentprofiles.json") as f:
-    profiles = json.load(f)
+import requests
+
+response = requests.get("http://127.0.0.1:8000/students")
+profiles = response.json()
 
 # Precompute encodings
 known_encodings = []
@@ -37,7 +39,7 @@ if camera_input:
         best_match_index = np.argmin(distances)
 
         # Set stricter threshold (default is 0.6, lower = stricter)
-        if distances[best_match_index] < 0.50:
+        if distances[best_match_index] < 0.47:
             profile = known_profiles[best_match_index]
 
             st.image(profile["image"], caption=profile.get("Student_Name", "Unknown"))
