@@ -4,9 +4,7 @@ import numpy as np
 import requests
 import streamlit as st
 
-# Load student profiles JSON
-import requests
-
+# connects the api.py
 response = requests.get("http://127.0.0.1:8000/students")
 profiles = response.json()
 
@@ -20,8 +18,7 @@ for profile in profiles:
     known_profiles.append(profile)
 
 st.title("📸 Student Face Recognition")
-
-camera_input = st.camera_input("Take a picture")
+camera_input = st.camera_input()
 
 if camera_input:
     file_bytes = np.asarray(bytearray(camera_input.getvalue()), dtype=np.uint8)

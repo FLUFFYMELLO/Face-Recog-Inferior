@@ -1,5 +1,4 @@
 [
-
     {
         "Student_Name": "Caringal, Paul Gian",
         "Student_Id": "2024-200090",
@@ -24,7 +23,6 @@
         "Records": "clean",
         "image": "data/Escara.jpg"
     },
-
     {
         "Student_Name": "Aldaya Mig Russel T.",
         "Student_Id": "2024-200433",
@@ -38,9 +36,7 @@
         "Student_Id": "2024-200090",
         "Course": "BSIT - Bachelor of Science in Information Technology",
         "Year_level": "2nd Year",
-        "Records": "clean",
+        "Records": "knife",
         "image": "data/Licudine.jpg"
     }
-
-
 ]
