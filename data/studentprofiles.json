@@ -36,7 +36,15 @@
         "Student_Id": "2024-200090",
         "Course": "BSIT - Bachelor of Science in Information Technology",
         "Year_level": "2nd Year",
-        "Records": "knife",
+        "Records": "Clean",
+        "image": "data/Licudine.jpg"
+    },
+    {
+        "Student_Name": "Cipriaso, Gerald C.",
+        "Student_Id": "2024-200429",
+        "Course": "BSIT - Bachelor of Science in Information Technology",
+        "Year_level": "2nd Year",
+        "Records": "clean",
         "image": "data/Licudine.jpg"
     }
 ]
