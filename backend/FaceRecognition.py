@@ -3,9 +3,8 @@ import face_recognition
 import numpy as np
 import requests
 
-# =========================
+
 # HELPER FUNCTION
-# =========================
 def face_confidence(face_distance, threshold=0.6):
     range_val = (1.0 - threshold)
     linear_val = ((1.0 - face_distance) / (range_val * 2.0))
@@ -15,16 +14,12 @@ def face_confidence(face_distance, threshold=0.6):
         return round(((linear_val + ((1.0 - linear_val) *
             np.power((linear_val - 0.5) * 2, 0.2)))) * 100, 2)
 
-# =========================
 # LOAD STUDENT PROFILES
-# =========================
 def load_profiles(api_url="http://127.0.0.1:8000/students"):
     response = requests.get(api_url, timeout=5)
     return response.json()
 
-# =========================
 # PRECOMPUTE ENCODINGS
-# =========================
 def compute_encodings(profiles):
     known_encodings = []
     known_profiles = []
@@ -35,9 +30,7 @@ def compute_encodings(profiles):
         known_profiles.append(profile)
     return known_encodings, known_profiles
 
-# =========================
 # MATCH FACE
-# =========================
 def match_face(rgb_frame, known_encodings, known_profiles, threshold=0.47):
     face_locations = face_recognition.face_locations(rgb_frame)
     face_encodings = face_recognition.face_encodings(rgb_frame, face_locations)
