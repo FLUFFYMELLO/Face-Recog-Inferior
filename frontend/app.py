@@ -90,6 +90,24 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# =========================
+# PRIVACY WARNING BANNER
+# =========================
+st.markdown("""
+<div style="
+    font-size:14px;
+    font-weight:600;
+    color:#e74c3c;
+    text-align:left;
+    margin-top:10px;
+    background-color:#fff3cd;
+    padding:10px;
+    border-radius:10px;
+    display:inline-block;
+">
+    ⚠️ Privacy Notice: This application uses your photo, name, and other personal information solely for face recognition and identity verification purposes. Your data will be handled securely and used only for authorized identification within the system.
+</div>
+""", unsafe_allow_html=True)
 st.divider()
 
 # =========================
