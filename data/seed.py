@@ -1,7 +1,7 @@
 import json
 from database import get_connection
 
-open("../data/studentprofiles.json", "r")
+with open("../data/studentprofiles.json", "r") as f:
     students = json.load(f)
 
 conn = get_connection()
