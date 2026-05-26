@@ -1,8 +1,10 @@
 import sqlite3
 from pathlib import Path
 
-# Database path
+# Get absolute path of this file (data/database.py)
 BASE_DIR = Path(__file__).resolve().parent
+
+# Database file path (data/students.db)
 DB_PATH = BASE_DIR / "students.db"
 
 
