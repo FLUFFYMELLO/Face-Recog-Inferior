@@ -1,35 +1,71 @@
 from fastapi import FastAPI
-from pathlib import Path
-import json
+from backend.database import get_connection, init_db
 
 app = FastAPI()
 
-DATA_FILE = Path("data/studentprofiles.json")
+# Initialize DB on startup
+init_db()
 
-# Load JSON once at startup
-def load_students():
-    with open(DATA_FILE, "r") as f:
-        return json.load(f)
+
+@app.get("/")
+def root():
+    return {"message": "API is running"}
+
 
 @app.get("/students")
 def get_students():
-    """Return all student profiles"""
-    return load_students()
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM students")
+        rows = cursor.fetchall()
+
+        students = [dict(row) for row in rows]
+
+        conn.close()
+        return students
+
+    except Exception as e:
+        return {"error": str(e)}
+
 
 @app.get("/students/{student_id}")
 def get_student(student_id: str):
-    """Return a single student by ID"""
-    students = load_students()
-    for student in students:
-        if student["Student_Id"] == student_id:
-            return student
-    return {"error": "Student not found"}
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM students WHERE Student_Id = ?", (student_id,))
+        row = cursor.fetchone()
+
+        conn.close()
+
+        if row:
+            return dict(row)
+        return {"error": "Student not found"}
+
+    except Exception as e:
+        return {"error": str(e)}
+
 
 @app.get("/students/name/{student_name}")
 def get_student_by_name(student_name: str):
-    """Search student by name"""
-    students = load_students()
-    for student in students:
-        if student["Student_Name"].lower() == student_name.lower():
-            return student
-    return {"error": "Student not found"}
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            SELECT * FROM students 
+            WHERE LOWER(Student_Name) = LOWER(?)
+        """, (student_name,))
+
+        row = cursor.fetchone()
+        conn.close()
+
+        if row:
+            return dict(row)
+        return {"error": "Student not found"}
+
+    except Exception as e:
+        return {"error": str(e)}
