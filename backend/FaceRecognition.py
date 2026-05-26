@@ -24,7 +24,7 @@ def compute_encodings(profiles):
     known_encodings = []
     known_profiles = []
     for profile in profiles:
-        img = face_recognition.load_image_file(profile["image"])
+        img = face_recognition.load_image_file(profile["Image"])
         encoding = face_recognition.face_encodings(img)[0]
         known_encodings.append(encoding)
         known_profiles.append(profile)

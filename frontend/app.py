@@ -263,10 +263,10 @@ margin:20px 0;
 
             with col_photo:
                 try:
-                    img = Image.open(profile["image"])
+                    img = Image.open(profile["Image"])
                     st.image(img, width=250)
                 except:
-                    st.image(profile["image"], width=250)
+                    st.image(profile["Image"], width=250)
 
             with col_info:
                 st.markdown(f"""
